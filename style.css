@@ -80,18 +80,56 @@ header {
 /* --- ★ SERVER FEATURES (魅力セクション) ★ --- */
 .features-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* 2列 */
     gap: 30px;
     margin-top: 40px;
 }
+
 .feature-box {
-    background: white;
-    padding: 50px 40px;
-    border-radius: 35px;
-    border: 3px solid var(--green-soft);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+    padding: 60px 40px;
+    border-radius: 40px;
+    border: 3px solid transparent;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* 影をはっきりさせる */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ボックスごとの色分け */
+.feat-green { background-color: var(--green-soft); border-color: #e0eed0; }
+.feat-pink { background-color: var(--pink-soft); border-color: #fce4ec; }
+
+/* ホバーアニメーション：上に浮き上がり、影を強くし、枠線に色をつける */
+.feature-box:hover {
+    transform: translateY(-20px) scale(1.03);
+    box-shadow: 0 40px 70px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+}
+
+.feat-green:hover { border-color: var(--green-main); }
+.feat-pink:hover { border-color: var(--pink-accent); }
+
+.feature-title {
+    font-size: 1.8rem; /* 題名を少し大きく */
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.feature-desc {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* スマホ対応：1列にする */
+@media (max-width: 900px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
 }
 /* ホバーアニメーション */
 .feature-box:hover {
@@ -166,3 +204,4 @@ header {
     .grid-3, .yt-container, .legal-wrap, .be-grid, .staff-grid, .features-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
 }
+
