@@ -19,189 +19,73 @@ body {
     background: var(--cream); 
     color: var(--text);
     line-height: 1.8;
-    overflow-x: hidden;
 }
 .content-limit { max-width: 1100px; margin: 0 auto; padding: 0 5%; }
 .section { padding: 100px 0; }
-
+.white-bg { background: white; }
 .green-soft-bg { background: var(--green-soft); }
 .green-bg { background: var(--green-dark); color: white; }
-.white-bg { background: white; }
 .cream-bg { background: var(--cream); }
 
+/* --- Global Hover Animations (復活) --- */
+.hover-up { transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.hover-up:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important; }
+
+.hover-right { transition: 0.3s ease; }
+.hover-right:hover { transform: translateX(10px); }
+
 /* --- Header --- */
-header { 
-    background: rgba(255, 255, 255, 0.95); 
-    backdrop-filter: blur(10px);
-    position: sticky; top: 0; z-index: 1000; padding: 15px 0;
-    border-bottom: 3px solid var(--green-soft);
-}
+header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; padding: 15px 0; border-bottom: 3px solid var(--green-soft); }
 .navbar { display: flex; justify-content: space-between; align-items: center; }
 .logo { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--green-dark); }
 .logo span { color: var(--pink-accent); }
 .nav-links { display: flex; gap: 20px; list-style: none; }
-.nav-links a { text-decoration: none; color: var(--text); font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
+.nav-links a { text-decoration: none; color: var(--text); font-weight: 700; transition: 0.3s; }
 .nav-links a:hover { color: var(--green-main); }
-.discord-btn { 
-    background: var(--green-main); color: white; text-decoration: none;
-    padding: 10px 22px; border-radius: 50px; font-weight: 900;
-    box-shadow: 0 5px 15px rgba(129, 199, 132, 0.4); transition: 0.3s;
-}
+.discord-btn { background: var(--green-main); color: white; text-decoration: none; padding: 10px 22px; border-radius: 50px; font-weight: 900; transition: 0.3s; }
+.discord-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(129, 199, 132, 0.4); }
 
-/* --- Hero --- */
+/* --- Hero & IP --- */
 .hero { min-height: 90vh; display: flex; align-items: center; text-align: center; position: relative; }
-.hero-bg-shapes .shape { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; z-index: 0; }
-.s1 { width: 400px; height: 400px; background: var(--green-soft); top: -10%; right: -5%; }
-.s2 { width: 300px; height: 300px; background: var(--pink-soft); bottom: -5%; left: -5%; }
-.hero-inner { position: relative; z-index: 1; width: 100%; }
-.status-badge { display: inline-block; padding: 5px 15px; background: white; border-radius: 50px; font-weight: 900; font-size: 0.8rem; border: 2px solid var(--green-main); margin-bottom: 20px; }
-.pulse { display: inline-block; width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; margin-right: 8px; animation: pulse 1.5s infinite; }
-@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-.main-title { font-family: 'Montserrat', sans-serif; font-size: clamp(3.5rem, 12vw, 6.5rem); line-height: 1; margin-bottom: 20px; }
-.main-title span { color: var(--pink-accent); }
-.hero-tag { font-weight: 900; color: var(--green-dark); letter-spacing: 2px; }
-
-/* --- IP Sections --- */
-.ip-section { margin-top: 50px; }
-.copy-card { 
-    background: white; padding: 40px; border-radius: 30px; cursor: pointer;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.copy-card:hover { transform: scale(1.02); }
-.ip-display { font-size: clamp(1.2rem, 5vw, 2.5rem); font-weight: 900; margin: 20px 0; color: var(--green-dark); }
+.main-title { font-family: 'Montserrat', sans-serif; font-size: clamp(3.5rem, 12vw, 6.5rem); line-height: 1; }
+.copy-card { background: white; padding: 40px; border-radius: 30px; cursor: pointer; transition: 0.4s; border: 3px solid transparent; margin-top: 40px; }
+.copy-card:hover { transform: scale(1.02); border-color: var(--green-main); }
 .be-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-.be-card { background: white; padding: 25px; border-radius: 20px; cursor: pointer; border: 2px solid #eee; transition: 0.3s; }
+.be-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #eee; transition: 0.3s; cursor: pointer; }
+.be-card:hover { border-color: var(--green-main); background: var(--green-soft); }
 
 /* --- YouTube --- */
 .yt-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; }
 .yt-btn-giant { display: flex; align-items: center; background: white; padding: 30px; border-radius: 30px; text-decoration: none; border: 3px solid #eee; transition: 0.4s; }
-.yt-icon-box { width: 80px; height: 80px; background: #f5f5f5; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--yt-red); }
+.yt-btn-giant:hover { transform: translateY(-10px); border-color: var(--yt-red); }
 
 /* --- ★ SERVER FEATURES (魅力セクション) ★ --- */
-.features-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2列 */
-    gap: 30px;
-    margin-top: 40px;
-}
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+.feature-box { padding: 60px 40px; border-radius: 40px; border: 3.5px solid #eee; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-.feature-box {
-    padding: 60px 40px;
-    border-radius: 40px;
-    border: 3px solid transparent;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* 影をはっきりさせる */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
+/* ボックスの色分け */
+.feat-green { background-color: var(--green-soft); }
+.feat-pink { background-color: var(--pink-soft); }
 
-/* ボックスごとの色分け */
-.feat-green { background-color: var(--green-soft); border-color: #e0eed0; }
-.feat-pink { background-color: var(--pink-soft); border-color: #fce4ec; }
-
-/* ホバーアニメーション：上に浮き上がり、影を強くし、枠線に色をつける */
-.feature-box:hover {
-    transform: translateY(-20px) scale(1.03);
-    box-shadow: 0 40px 70px rgba(0, 0, 0, 0.12);
-    z-index: 10;
-}
-
+/* ホバー：しっかり浮き上がる */
+.feature-box:hover { transform: translateY(-15px); box-shadow: 0 30px 50px rgba(0,0,0,0.12); }
 .feat-green:hover { border-color: var(--green-main); }
 .feat-pink:hover { border-color: var(--pink-accent); }
 
-.feature-title {
-    font-size: 1.8rem; /* 題名を少し大きく */
-    font-weight: 900;
-    color: var(--text);
-    margin-bottom: 25px;
-    line-height: 1.4;
-}
+.feature-title { font-size: 1.6rem; font-weight: 900; color: var(--green-dark); margin-bottom: 20px; }
+.feature-desc { font-size: 1.1rem; font-weight: 700; color: #555; }
 
-.feature-desc {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #555;
-    line-height: 1.8;
-}
-
-/* スマホ対応：1列にする */
-@media (max-width: 900px) {
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-}
-/* ホバーアニメーション */
-.feature-box:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(129, 199, 132, 0.15);
-    border-color: var(--green-main);
-}
-.feature-title {
-    font-size: 1.6rem; /* 題名のサイズ */
-    font-weight: 900;
-    color: var(--green-dark);
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
-.feature-desc {
-    font-size: 1.1rem; /* 内容のサイズ */
-    font-weight: 700;
-    color: #666;
-}
-
-/* --- ★ WIKI CENTER (近日公開のWikiを中央に) ★ --- */
-.wiki-center {
-    display: flex;
-    justify-content: center;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-.wiki-center .card-item {
-    max-width: 500px;
-    width: 100%;
-}
-
-/* --- News --- */
-.news-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
-.news-item { background: white; padding: 30px 40px; border-radius: 25px; border-left: 8px solid var(--green-main); }
-
-/* --- Server List --- */
-.sec-title { text-align: center; font-size: 2.5rem; font-weight: 900; margin-bottom: 60px; }
-.en-sub { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: var(--pink-accent); letter-spacing: 3px; margin-top: 5px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.card-item { background: white; padding: 50px 30px; border-radius: 40px; text-align: center; transition: 0.3s; position: relative; color: var(--text); }
-.hover-up:hover { transform: translateY(-20px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
-.card-icon { width: 80px; height: 80px; margin: 0 auto 25px; border-radius: 25px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
-.card-icon.green { background: var(--green-soft); color: var(--green-dark); }
-.card-icon.pink { background: var(--pink-soft); color: var(--pink-accent); }
-.card-list { list-style: none; text-align: left; margin-top: 20px; font-size: 0.9rem; }
+/* --- Wiki & Servers --- */
+.wiki-center { display: flex; justify-content: center; margin-top: 40px; }
+.wiki-center .card-item { max-width: 500px; width: 100%; border: 2px solid #eee; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+.card-item { background: white; padding: 50px 30px; border-radius: 40px; text-align: center; }
 
 /* --- Staff --- */
-.role-badge { display: inline-block; padding: 6px 18px; border-radius: 8px; font-weight: 900; font-size: 0.8rem; color: white; margin-bottom: 20px; }
-.r-owner { background: var(--pink-accent); }
-.r-admin { background: #f39c12; }
-.r-mod { background: var(--green-main); }
-.staff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
-.staff-flex { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-bottom: 40px; }
-.staff-card { background: var(--green-soft); padding: 25px; border-radius: 20px; border-left: 6px solid var(--green-main); }
+.staff-card { background: var(--green-soft); padding: 25px; border-radius: 20px; border-left: 6px solid var(--green-main); margin-bottom: 15px; }
 .prem { border-left-color: var(--pink-accent); background: #fffcf5; }
-
-/* --- Policies --- */
-.legal-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.legal-box { background: white; padding: 40px; border-radius: 30px; }
-.scroll-area { height: 350px; overflow-y: auto; padding-right: 15px; font-size: 0.85rem; color: #555; }
-
-/* --- Toast --- */
-#toast-container { position: fixed; top: 30px; right: 30px; z-index: 9999; }
-.toast { background: #333; color: white; padding: 18px 30px; border-radius: 20px; font-weight: 900; margin-bottom: 10px; transform: translateX(150%); opacity: 0; transition: 0.4s; display: flex; align-items: center; gap: 12px; }
-.toast.show { transform: translateX(0); opacity: 1; }
-
-.footer { padding: 60px 0; text-align: center; color: #999; font-weight: 700; }
 
 /* --- Responsive --- */
 @media (max-width: 900px) {
-    .grid-3, .yt-container, .legal-wrap, .be-grid, .staff-grid, .features-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
+    .grid-3, .yt-container, .features-grid, .be-grid, .staff-grid { grid-template-columns: 1fr; }
 }
-
