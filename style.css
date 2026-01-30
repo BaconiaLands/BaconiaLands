@@ -253,3 +253,21 @@ header {
         display: block; /* スマホでは横幅いっぱいに */
     }
 }
+
+/* --- サーバーの魅力セクションの調整 --- */
+#features {
+    background-color: var(--green-soft); /* 背景を少し色付きに */
+}
+
+#features .card-item {
+    background: white;
+    border: 2px solid rgba(129, 199, 132, 0.2); /* 薄い緑の枠線 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* 影を少し濃く */
+    transition: all 0.3s ease;
+}
+
+#features .card-item:hover {
+    border-color: var(--pink-accent); /* ホバー時に枠の色を変える */
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
