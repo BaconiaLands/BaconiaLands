@@ -271,3 +271,31 @@ header {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
+
+/* --- ヘッダーを1列に収めるための調整 --- */
+
+/* 1. 全体の横幅制限を広げる */
+header .content-limit {
+    max-width: 1300px; /* 1100pxから拡張 */
+}
+
+/* 2. ロゴとメニューの間隔を最大まで広げる */
+.navbar {
+    justify-content: space-between;
+}
+
+/* 3. メニュー同士の隙間を少し詰める */
+.nav-links {
+    gap: 12px; /* 20pxから12pxに凝縮 */
+}
+
+/* 4. メニューの文字サイズを少しだけ小さくする(1列に収めるため) */
+.nav-links a {
+    font-size: 0.85rem;
+}
+
+/* 5. ロゴをより左端へ */
+.logo {
+    margin-right: auto;
+    padding-right: 20px;
+}
