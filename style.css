@@ -239,3 +239,17 @@ header {
     font-size: 0.85rem;
     font-weight: 900;
 }
+
+/* --- Wikiを中央に寄せるための設定 --- */
+.grid-1-center {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* モバイル表示（画面が狭い時）の調整 */
+@media (max-width: 900px) {
+    .grid-1-center {
+        display: block; /* スマホでは横幅いっぱいに */
+    }
+}
