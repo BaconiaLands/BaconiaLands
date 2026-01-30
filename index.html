@@ -612,6 +612,41 @@ function copy(text, label) {
 
 }
 
+// --- サーバーステータス取得スクリプト ---
+const SERVER_IP = 'wildcard-quizzes.gl.joinmc.link';
+
+async function updateServerStatus() {
+    const statusText = document.getElementById('status-text');
+    const statusContainer = document.getElementById('server-status-container');
+    const playerCount = document.getElementById('player-count');
+    const onlineDisplay = document.getElementById('online-players');
+    const maxDisplay = document.getElementById('max-players');
+
+    try {
+        const response = await fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_IP}`);
+        const data = await response.json();
+
+        if (data.online) {
+            statusContainer.classList.remove('offline');
+            statusContainer.classList.add('online');
+            statusText.textContent = "サーバー稼働中";
+            playerCount.style.display = 'inline-block';
+            onlineDisplay.textContent = data.players.online;
+            maxDisplay.textContent = data.players.max;
+        } else {
+            throw new Error('Offline');
+        }
+    } catch (error) {
+        statusContainer.classList.remove('online');
+        statusContainer.classList.add('offline');
+        statusText.textContent = "サーバー停止中";
+        playerCount.style.display = 'none';
+    }
+}
+
+updateServerStatus();
+setInterval(updateServerStatus, 60000);
+    
 </script>
 
 </body>
@@ -619,5 +654,6 @@ function copy(text, label) {
 
 
 </html>
+
 
 
