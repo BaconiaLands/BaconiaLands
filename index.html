@@ -68,7 +68,13 @@
 
         <div class="content-limit hero-inner">
 
-            <div class="status-badge"><span class="pulse"></span> サーバー停止中</div>
+            <div class="status-badge" id="server-status-container">
+    <span class="pulse" id="status-indicator"></span> 
+    <span id="status-text">ステータス確認中...</span>
+    <span id="player-count" style="margin-left: 8px; color: var(--green-dark); display: none;">
+        [ <i class="fas fa-users"></i> <span id="online-players">0</span> / <span id="max-players">0</span> ]
+    </span>
+</div>
 
             <h1 class="main-title">Baconia<span>Lands</span></h1>
 
@@ -613,4 +619,5 @@ function copy(text, label) {
 
 
 </html>
+
 
