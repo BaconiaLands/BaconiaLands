@@ -220,3 +220,22 @@ header {
     .grid-3, .yt-container, .legal-wrap, .be-grid, .staff-grid, .grid-2-center { grid-template-columns: 1fr; }
     .nav-links { display: none; }
 }
+
+/* --- Server Status Styles --- */
+.status-badge.offline {
+    border-color: #e74c3c !important;
+    color: #e74c3c !important;
+}
+.status-badge.offline .pulse {
+    background: #e74c3c !important;
+    animation: none !important;
+    opacity: 0.6;
+}
+.status-badge.online {
+    border-color: var(--green-main) !important;
+    color: var(--green-dark) !important;
+}
+#player-count {
+    font-size: 0.85rem;
+    font-weight: 900;
+}
