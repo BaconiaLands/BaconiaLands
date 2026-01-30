@@ -299,3 +299,34 @@ header .content-limit {
     margin-right: auto;
     padding-right: 20px;
 }
+
+/* --- ヘッダーのレイアウト再調整 --- */
+
+/* 1. ヘッダーだけ横幅の制限を解除して広々させる */
+header .content-limit {
+    max-width: 95%; /* 画面の端から端まで広く使う */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 2. メニュー同士の間隔をゆったり戻す */
+.nav-links {
+    gap: 18px; /* 12pxから18pxに広げて読みやすく */
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-wrap: nowrap; /* 絶対に折り返さない */
+}
+
+/* 3. 文字サイズを標準に戻す */
+.nav-links a {
+    font-size: 0.9rem;
+    white-space: nowrap; /* 文字が途中で改行されるのを防ぐ */
+}
+
+/* 4. Discordボタンが大きすぎて圧迫している場合は少し調整 */
+.discord-btn {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
