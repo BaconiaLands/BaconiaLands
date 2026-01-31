@@ -414,3 +414,48 @@ header .content-limit {
     transform: scale(1.05);
     background-color: #333;
 }
+
+/* --- [1] テーマの変数定義 --- */
+:root {
+    --header-bg: rgba(255, 255, 255, 0.8); /* 半透明の白 */
+    --header-text: #333333;
+    --blur-amount: 10px; /* 磨りガラス効果の強さ */
+}
+
+[data-theme="dark"] {
+    --header-bg: rgba(26, 26, 26, 0.8); /* 半透明の黒 */
+    --header-text: #ffffff;
+}
+
+/* --- [2] ヘッダーのデザイン修正 --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--header-bg);
+    backdrop-filter: blur(var(--blur-amount)); /* 背景をぼかす（おしゃれ！） */
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+/* リンクの文字色 */
+.nav-links a {
+    color: var(--header-text);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* モード切り替えアイコンの色 */
+.header-theme-btn i {
+    color: var(--header-text);
+}
