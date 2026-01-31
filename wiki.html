@@ -2,56 +2,129 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Wiki - Cloud Page</title>
+    <title>Wiki - Dynamic Sky</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; background: #fdfdfd; color: #1a1a1a; overflow: hidden; }
-        /* 雲の背景 */
-        .sky { position: fixed; width: 100%; height: 100%; z-index: -1; background: linear-gradient(#fff, #f0f7ff); overflow: hidden; }
-        .cloud { position: absolute; background: #fff; border-radius: 100px; filter: blur(25px); opacity: 0.6; animation: move linear infinite; }
-        @keyframes move { from { transform: translateX(-350px); } to { transform: translateX(110vw); } }
-        /* サイドバー */
-        .sidebar { width: 260px; height: 100vh; background: rgba(255,255,255,0.9); border-right: 1px solid #eee; position: fixed; padding: 25px 20px; box-sizing: border-box; z-index: 100; }
-        .back-btn { width: 100%; padding: 12px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 40px; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; color: #1a1a1a; overflow: hidden; }
+
+        /* --- 時間で変わる背景レイヤー --- */
+        #sky-bg {
+            position: fixed; width: 100%; height: 100%; z-index: -2;
+            transition: background 2s ease; /* 時間変化を滑らかに */
+        }
+
+        /* 朝・昼の空 */
+        .sky-day { background: linear-gradient(to bottom, #74b9ff, #ffffff); }
+        /* 夕方の空 */
+        .sky-evening { background: linear-gradient(to bottom, #ff7675, #fab1a0); }
+        /* 夜の空 */
+        .sky-night { background: linear-gradient(to bottom, #2d3436, #000000); color: #fff; }
+
+        /* --- 動く雲の設定 --- */
+        .cloud-container { position: fixed; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
+        .cloud {
+            position: absolute; background: #fff; border-radius: 100px;
+            filter: blur(30px); opacity: 0.7; animation: moveClouds linear infinite;
+        }
+        @keyframes moveClouds {
+            from { transform: translateX(-400px); }
+            to { transform: translateX(110vw); }
+        }
+
+        /* --- サイドバー --- */
+        .sidebar {
+            width: 260px; height: 100vh; background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px); border-right: 1px solid rgba(0,0,0,0.1);
+            position: fixed; padding: 30px 20px; box-sizing: border-box; z-index: 100;
+        }
+
+        /* ヘッダーと同じボタンをサイドバーに配置 */
+        .nav-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+        .nav-btn {
+            display: block; padding: 12px; text-align: center; text-decoration: none;
+            color: #333; font-weight: bold; border: 2px solid #333; border-radius: 8px;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: #333; color: #fff; }
+
         /* Wikiメニュー */
-        .wiki-menu summary { list-style: none; font-weight: bold; cursor: pointer; padding: 10px; background: #f4f4f4; border-radius: 4px; display: flex; justify-content: space-between; }
-        .wiki-menu summary::after { content: '＋'; }
-        .wiki-menu[open] summary::after { content: '－'; }
+        .wiki-menu summary { list-style: none; font-weight: bold; cursor: pointer; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 5px; display: flex; justify-content: space-between; }
+        .wiki-menu summary::after { content: '▼'; font-size: 0.8rem; }
         .wiki-list { list-style: none; padding: 10px 0 0 15px; margin: 0; }
-        .wiki-list a { text-decoration: none; color: #555; }
-        /* コンテンツ */
-        .main { margin-left: 260px; height: 100vh; overflow-y: auto; padding: 60px 40px; box-sizing: border-box; }
-        .article { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.5); padding: 40px; border-radius: 15px; }
+        .wiki-list a { text-decoration: none; color: inherit; opacity: 0.7; }
+        .wiki-list a:hover { opacity: 1; font-weight: bold; }
+
+        /* メインコンテンツ */
+        .main { margin-left: 260px; height: 100vh; overflow-y: auto; padding: 60px; box-sizing: border-box; }
+        .article { max-width: 800px; background: rgba(255, 255, 255, 0.3); padding: 40px; border-radius: 20px; }
+        
+        /* 夜モードの時の文字色調整 */
+        .sky-night ~ .main { color: #fff; }
+        .sky-night ~ .sidebar { background: rgba(0, 0, 0, 0.7); border-right-color: #444; color: #fff; }
+        .sky-night ~ .sidebar .nav-btn { color: #fff; border-color: #fff; }
+        .sky-night ~ .sidebar .nav-btn:hover { background: #fff; color: #000; }
     </style>
 </head>
 <body>
-    <div class="sky" id="sky"></div>
+
+    <div id="sky-bg"></div>
+    <div class="cloud-container" id="clouds"></div>
+
     <aside class="sidebar">
-        <button class="back-btn" onclick="location.href='index.html'">← 元のページに戻る</button>
+        <div class="nav-group">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="#" class="nav-btn">News</a>
+            </div>
+
         <details class="wiki-menu" open>
-            <summary>Wiki</summary>
+            <summary>Wiki 一覧</summary>
             <ul class="wiki-list">
                 <li><a href="#intro">1. 入り方</a></li>
             </ul>
         </details>
     </aside>
+
     <main class="main">
         <article class="article" id="intro">
             <h1>入り方</h1>
-            <p>ここに詳細を書き足してください。</p>
+            <p>現在の時刻に合わせて、背景の空の色が変わります。</p>
+            <p>サイドバーの「Home」から元のページに戻ることができます。</p>
         </article>
     </main>
+
     <script>
-        const sky = document.getElementById('sky');
-        for (let i = 0; i < 8; i++) {
-            const c = document.createElement('div');
-            c.className = 'cloud';
-            const s = Math.random() * 200 + 150;
-            c.style.width = s + 'px'; c.style.height = s*0.5 + 'px';
-            c.style.top = Math.random() * 100 + 'vh';
-            c.style.animationDuration = (Math.random() * 20 + 20) + 's';
-            c.style.animationDelay = (Math.random() * 10) + 's';
-            sky.appendChild(c);
+        // 1. 時間に合わせて背景を変更
+        function updateSky() {
+            const hour = new Date().getHours();
+            const bg = document.getElementById('sky-bg');
+            
+            if (hour >= 5 && hour < 16) {
+                bg.className = 'sky-day';      // 朝・昼 (5:00 - 15:59)
+            } else if (hour >= 16 && hour < 19) {
+                bg.className = 'sky-evening';  // 夕方 (16:00 - 18:59)
+            } else {
+                bg.className = 'sky-night';    // 夜 (19:00 - 4:59)
+            }
         }
+
+        // 2. 雲を生成
+        function createClouds() {
+            const container = document.getElementById('clouds');
+            for (let i = 0; i < 10; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                const size = Math.random() * 250 + 150;
+                cloud.style.width = size + 'px';
+                cloud.style.height = (size * 0.5) + 'px';
+                cloud.style.top = Math.random() * 100 + 'vh';
+                cloud.style.left = '-' + (size + 100) + 'px';
+                cloud.style.animationDuration = (Math.random() * 20 + 25) + 's';
+                cloud.style.animationDelay = (Math.random() * 20) + 's';
+                container.appendChild(cloud);
+            }
+        }
+
+        updateSky();
+        createClouds();
     </script>
 </body>
 </html>
