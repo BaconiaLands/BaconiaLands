@@ -330,3 +330,87 @@ header .content-limit {
     font-size: 0.85rem;
     white-space: nowrap;
 }
+
+/* ==========================================
+   Wikiセクション用の追加デザイン
+   ========================================== */
+
+/* 1. ヘッダーのWikiボタン */
+.nav-btn {
+    padding: 8px 18px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    border: 1.5px solid #333;
+    border-radius: 6px;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* 2. メインページのWiki紹介セクション */
+#wiki-section {
+    background-color: #ffffff; /* 白背景 */
+    padding: 80px 20px;
+    text-align: center;
+}
+
+#wiki-section h2 {
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+}
+
+/* 3. プレビューカード（省略されたWiki） */
+.wiki-card {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.wiki-card h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.wiki-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 4. 「詳しく見る」リンク */
+.detail-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+}
+
+/* 5. セクション一番下の「Wikiを見る」ボタン */
+.big-wiki-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 16px 50px;
+    background-color: #000; /* 黒系 */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.big-wiki-button:hover {
+    transform: scale(1.05);
+    background-color: #333;
+}
