@@ -606,3 +606,29 @@ body {
     margin-bottom: 2px;
     text-transform: uppercase;
 }
+
+/* ナビバーを確実に左右いっぱいに使う設定 */
+.navbar.content-limit {
+    width: 100%;
+    max-width: 1400px; /* 最大幅を少し広げて余裕を持たせる */
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+/* 文字リンクが勝手に中央に行かないようにする */
+.nav-left-group {
+    flex: 1; /* 左側が可能な限り広がるようにする */
+    justify-content: flex-start;
+}
+
+/* 右側のボタン群が潰れないように固定 */
+.header-controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* リンクの文字サイズを微調整（はみ出し防止） */
+.nav-links a {
+    font-size: 0.85rem;
+    white-space: nowrap; /* 途中で改行させない */
+}
