@@ -241,8 +241,27 @@
         </article>
     </main>
 
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainArea = document.querySelector('.main-scroll-area');
+            const openBtn = document.getElementById('open-btn');
+
+            // クラスを付け外ししてアニメーションさせる
+            sidebar.classList.toggle('closed');
+            mainArea.classList.toggle('expanded');
+
+            // サイドバーが閉じている(closedクラスがある)なら「開くボタン」を表示
+            if (sidebar.classList.contains('closed')) {
+                openBtn.style.display = 'flex';
+            } else {
+                openBtn.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
+
 
 
 
