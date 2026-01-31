@@ -2,61 +2,63 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Wiki - Defined Random Clouds</title>
+    <title>Wiki - Visible High Contrast Clouds</title>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; overflow: hidden; background-color: #90a4ae; }
 
-        /* --- 背景（雲を際立たせるために少し暗めのグレー） --- */
+        /* --- 背景（雲を際立たせるグレー） --- */
         #sky-base {
             position: fixed; width: 100%; height: 100%; z-index: -3;
-            background: linear-gradient(to bottom, #78909c, #b0bec5);
+            background: #b0bec5;
         }
 
         .cloud-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
 
-        /* --- 境界線をクッキリさせた雲 --- */
+        /* --- 境界線を真っ黒にした雲 --- */
         .cloud {
             position: absolute;
-            border-radius: 100px;
-            filter: blur(5px); /* ぼかしを最小限にして境界を出す */
-            border: 1px solid rgba(0, 0, 0, 0.05); /* 縁取りを微かに追加 */
+            border-radius: 50px;
+            /* 境界線を真っ黒に設定 */
+            border: 2px solid #000000; 
+            /* ぼかしを完全に削除して形をはっきりさせる */
+            filter: none; 
             animation: moveClouds linear infinite;
+            box-sizing: border-box;
         }
 
-        /* 雲のもくもくした重なり（本体と同じ色を継承） */
+        /* 雲のもくもく部分 */
         .cloud::before, .cloud::after {
             content: '';
             position: absolute;
-            background: inherit;
+            background: inherit; /* 親（cloud）と同じ色を継承 */
+            border: 2px solid #000000;
             border-radius: 50%;
-            border: inherit;
+            box-sizing: border-box;
         }
-        .cloud::before { width: 80%; height: 100%; top: -50%; left: 15%; }
-        .cloud::after { width: 60%; height: 80%; top: -20%; left: -25%; }
+        /* もくもくの配置 */
+        .cloud::before { width: 80%; height: 130%; top: -60%; left: 10%; }
+        .cloud::after { width: 60%; height: 100%; top: -30%; left: -30%; }
 
         @keyframes moveClouds {
             from { transform: translateX(-600px); }
             to { transform: translateX(110vw); }
         }
 
-        /* サイドバー・メインエリアのデザイン */
+        /* サイドバー・メインエリア（デザイン維持） */
         .sidebar {
-            width: 260px; height: 100vh; background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px); border-right: 2px solid #555;
+            width: 260px; height: 100vh; background: rgba(255, 255, 255, 1);
+            border-right: 3px solid #000;
             position: fixed; padding: 40px 20px; box-sizing: border-box; z-index: 100;
         }
         .nav-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
         .nav-link {
-            text-decoration: none; color: #333; font-weight: bold; padding: 12px;
-            border: 2px solid #333; border-radius: 8px; text-align: center; transition: 0.3s;
+            text-decoration: none; color: #000; font-weight: bold; padding: 12px;
+            border: 2px solid #000; border-radius: 8px; text-align: center;
         }
-        .nav-link:hover { background: #333; color: #fff; }
-
         .main { margin-left: 260px; height: 100vh; overflow-y: auto; padding: 60px; box-sizing: border-box; }
         .article {
-            max-width: 800px; padding: 50px; border-radius: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 800px; padding: 50px; border: 2px solid #000; border-radius: 20px;
+            background: white;
         }
     </style>
 </head>
@@ -70,32 +72,32 @@
             <a href="index.html" class="nav-link">HOME</a>
             <a href="#" class="nav-link">NEWS</a>
         </div>
-        <div style="font-weight: bold; padding: 10px; background: #eee; border-radius: 5px;">Wikiメニュー</div>
+        <div style="font-weight: bold; border-bottom: 2px solid #000;">Wikiメニュー</div>
         <ul style="list-style: none; padding: 15px 0 0 15px;">
-            <li><a href="#intro" style="text-decoration: none; color: #555;">1. 入り方</a></li>
+            <li><a href="#intro" style="color: #000;">1. 入り方</a></li>
         </ul>
     </aside>
 
     <main class="main">
         <article class="article" id="intro">
             <h1>入り方</h1>
-            <p>境界線をクッキリさせた「もくもくした雲」が3色のランダムなグレーで流れます。</p>
-            <p>ぼかしを最小限にし、輪郭に薄い線を入れることで「ただの灰色」に見えないように調整しました。</p>
+            <p>境界線を「2pxの真っ黒な線」にしました。これで形がはっきり見えるはずです。</p>
+            <p>色はJavaScriptで3種類のグレーをランダムに割り当てています。</p>
         </article>
     </main>
 
     <script>
         const container = document.getElementById('clouds');
         
-        // 3色のグレー（薄い・中間・濃い）
+        // 3色のグレー（コントラストを強めに設定）
         const greyTones = [
-            '#ffffff', // 薄い（白に近い）
-            '#cfd8dc', // 中間
-            '#90a4ae'  // 濃い
+            '#ffffff', // 白（薄い灰色）
+            '#999999', // 中間
+            '#555555'  // 濃い灰色
         ];
         
         function createCloud() {
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 12; i++) {
                 const cloud = document.createElement('div');
                 cloud.className = 'cloud';
                 
@@ -104,21 +106,18 @@
                 cloud.style.backgroundColor = chosenColor;
                 
                 // サイズ設定
-                const w = Math.random() * 250 + 200;
+                const w = Math.random() * 200 + 150;
                 cloud.style.width = w + 'px';
                 cloud.style.height = (w * 0.4) + 'px';
                 
                 // 位置設定
-                cloud.style.top = Math.random() * 100 + 'vh';
+                cloud.style.top = Math.random() * 90 + 'vh';
                 cloud.style.left = '-' + (w + 400) + 'px';
                 
-                // アニメーション速度（色によって少し変えると立体感が出ます）
-                const duration = Math.random() * 20 + 30; 
+                // アニメーション速度
+                const duration = Math.random() * 15 + 25; 
                 cloud.style.animationDuration = duration + 's';
                 cloud.style.animationDelay = (Math.random() * duration * -1) + 's';
-                
-                // 不透明度（重なりを綺麗に見せる）
-                cloud.style.opacity = "0.9";
                 
                 container.appendChild(cloud);
             }
