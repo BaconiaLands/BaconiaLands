@@ -203,16 +203,78 @@
 
     <main class="main-scroll-area">
         <article class="article-box" id="intro">
-            <h1>入り方</h1>
-            <p>
-                サーバーへの参加方法について詳しく解説します。
+            <h1 style="border-bottom: 2px solid var(--border-color); padding-bottom: 15px; margin-bottom: 25px;">入り方</h1>
+            
+            <p style="font-size: 1.1rem; margin-bottom: 30px;">
+                BaconiaLands サーバーへの参加方法について詳しく説明します。
             </p>
-            <p>
-                サイドバーのメニューを整理しました。「利用規約」や「プライバシーポリシー」の追加、および「寄付」「コマンド」の削除が完了しています。
-            </p>
+
+            <div style="background: var(--nav-hover); padding: 20px; border-radius: 12px; margin-bottom: 40px; border-left: 5px solid #ffcc00;">
+                <h3 style="margin-top: 0; color: var(--text-color);"><i class="fas fa-info-circle"></i> 対応機種・バージョン</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8;">
+                    <li><strong>PC:</strong> Java Edition / Bedrock Edition (統合版)</li>
+                    <li><strong>ゲーム機:</strong> 統合版 (Switch / PS4 / PS5 / Xbox など)</li>
+                    <li><strong>バージョン:</strong> 最新バージョン</li>
+                </ul>
+            </div>
+
+            <section style="margin-bottom: 40px;">
+                <h2 style="font-size: 1.5rem; color: var(--text-color); border-left: 4px solid #5865f2; padding-left: 15px;">1. Java版 (PC) の入り方</h2>
+                <ol style="line-height: 2;">
+                    <li>マインクラフトを起動する</li>
+                    <li><strong>「マルチプレイ」</strong>を選択</li>
+                    <li><strong>「サーバーを追加」</strong>を選択</li>
+                    <li>サーバー名を入力（例：BaconiaLands ※なんでもOK）</li>
+                    <li>サーバーアドレスを入力
+                        <div style="background: #333; color: #fff; padding: 10px 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; font-size: 1rem;">
+                            wildcard-quizzes.gl.joinmc.link
+                        </div>
+                    </li>
+                    <li>サーバーリストから今追加したサーバーを選択し、参加する</li>
+                </ol>
+            </section>
+
+            <section style="margin-bottom: 40px;">
+                <h2 style="font-size: 1.5rem; color: var(--text-color); border-left: 4px solid #107c10; padding-left: 15px;">2. Bedrock版 (PC) の入り方</h2>
+                <ol style="line-height: 2;">
+                    <li>マインクラフトを起動する</li>
+                    <li><strong>「遊ぶ」</strong>を選択</li>
+                    <li><strong>「サーバー」</strong>タブを選択</li>
+                    <li><strong>「サーバーを追加」</strong>を選択</li>
+                    <li>サーバー名を入力（なんでもOK）</li>
+                    <li>サーバーアドレス (IP) を入力
+                        <div style="background: #333; color: #fff; padding: 10px 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; font-size: 1rem;">
+                            ring-unworthy.gl.at.ply.gg
+                        </div>
+                    </li>
+                    <li>ポートを入力
+                        <div style="background: #333; color: #fff; padding: 10px 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; font-size: 1rem;">
+                            12277
+                        </div>
+                    </li>
+                    <li>保存して参加する</li>
+                </ol>
+            </section>
+
+            <section style="margin-bottom: 40px;">
+                <h2 style="font-size: 1.5rem; color: var(--text-color); border-left: 4px solid #ffcc00; padding-left: 15px;">3. ゲーム機 (Bedrock/統合版) の入り方</h2>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">※Switch, PS4/5, Xboxなど、直接サーバー追加ができない機種向け</p>
+                <ol style="line-height: 2;">
+                    <li>マインクラフトを起動する</li>
+                    <li><strong>「遊ぶ」</strong>を選択</li>
+                    <li><strong>「フレンド」</strong> (またはソーシャル) タブを選択</li>
+                    <li><strong>「プレイヤーを検索」</strong>を選択</li>
+                    <li>IDを入力して検索
+                        <div style="background: #333; color: #fff; padding: 10px 15px; border-radius: 8px; margin: 10px 0; font-family: monospace; font-size: 1rem;">
+                            kinomina500
+                        </div>
+                    </li>
+                    <li><strong>「フレンドを追加する」</strong>を選択</li>
+                    <li>参加可能なフレンド欄に表示される <strong>「BaconiaLands」</strong> を選択して参加</li>
+                </ol>
+            </section>
         </article>
     </main>
-
    <script>
     /* --- [1] サイドバーを開閉する機能 --- */
     function toggleSidebar() {
@@ -342,6 +404,7 @@
 </script>
 </body>
 </html>
+
 
 
 
