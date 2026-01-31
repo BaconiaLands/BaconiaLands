@@ -124,6 +124,21 @@
     }
     h1 { font-size: 2rem; margin-top: 0; color: var(--text-color); }
     p { line-height: 1.8; color: var(--text-muted); }
+        /* index.htmlからの検索結果専用のデザイン */
+.external-result {
+    display: block !important;
+    padding: 12px !important;
+    background: var(--nav-hover);
+    margin-bottom: 10px !important;
+    border-left: 4px solid #ffcc00 !important; /* 左線を黄色にして区別 */
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.external-result:hover {
+    background: var(--border-color);
+    transform: translateX(5px);
+}
 </style>
 </head>
 <body>
@@ -272,6 +287,7 @@
 </script>
 </body>
 </html>
+
 
 
 
