@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Wiki - Cloud Page</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; background: #fdfdfd; color: #1a1a1a; overflow: hidden; }
+        /* 雲の背景 */
+        .sky { position: fixed; width: 100%; height: 100%; z-index: -1; background: linear-gradient(#fff, #f0f7ff); overflow: hidden; }
+        .cloud { position: absolute; background: #fff; border-radius: 100px; filter: blur(25px); opacity: 0.6; animation: move linear infinite; }
+        @keyframes move { from { transform: translateX(-350px); } to { transform: translateX(110vw); } }
+        /* サイドバー */
+        .sidebar { width: 260px; height: 100vh; background: rgba(255,255,255,0.9); border-right: 1px solid #eee; position: fixed; padding: 25px 20px; box-sizing: border-box; z-index: 100; }
+        .back-btn { width: 100%; padding: 12px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 40px; }
+        /* Wikiメニュー */
+        .wiki-menu summary { list-style: none; font-weight: bold; cursor: pointer; padding: 10px; background: #f4f4f4; border-radius: 4px; display: flex; justify-content: space-between; }
+        .wiki-menu summary::after { content: '＋'; }
+        .wiki-menu[open] summary::after { content: '－'; }
+        .wiki-list { list-style: none; padding: 10px 0 0 15px; margin: 0; }
+        .wiki-list a { text-decoration: none; color: #555; }
+        /* コンテンツ */
+        .main { margin-left: 260px; height: 100vh; overflow-y: auto; padding: 60px 40px; box-sizing: border-box; }
+        .article { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.5); padding: 40px; border-radius: 15px; }
+    </style>
+</head>
+<body>
+    <div class="sky" id="sky"></div>
+    <aside class="sidebar">
+        <button class="back-btn" onclick="location.href='index.html'">← 元のページに戻る</button>
+        <details class="wiki-menu" open>
+            <summary>Wiki</summary>
+            <ul class="wiki-list">
+                <li><a href="#intro">1. 入り方</a></li>
+            </ul>
+        </details>
+    </aside>
+    <main class="main">
+        <article class="article" id="intro">
+            <h1>入り方</h1>
+            <p>ここに詳細を書き足してください。</p>
+        </article>
+    </main>
+    <script>
+        const sky = document.getElementById('sky');
+        for (let i = 0; i < 8; i++) {
+            const c = document.createElement('div');
+            c.className = 'cloud';
+            const s = Math.random() * 200 + 150;
+            c.style.width = s + 'px'; c.style.height = s*0.5 + 'px';
+            c.style.top = Math.random() * 100 + 'vh';
+            c.style.animationDuration = (Math.random() * 20 + 20) + 's';
+            c.style.animationDelay = (Math.random() * 10) + 's';
+            sky.appendChild(c);
+        }
+    </script>
+</body>
+</html>
