@@ -484,3 +484,30 @@ body {
 .hero {
     padding-top: 80px; 
 }
+
+/* ナビバー全体のレイアウト */
+.navbar.content-limit {
+    max-width: 1200px; /* 前に調整した幅 */
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* これで左と右に分かれる */
+    align-items: center;
+}
+
+/* ロゴとリンクの並びを微調整 */
+.nav-left-group {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* 右側のボタンエリア */
+.header-controls {
+    display: flex;
+    align-items: center;
+}
