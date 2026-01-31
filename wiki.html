@@ -192,7 +192,7 @@
     </main>
 
    <script>
-    // サイドバーを開閉する機能（既存）
+    /* --- [1] サイドバーを開閉する機能 --- */
     function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
         const mainArea = document.querySelector('.main-scroll-area');
@@ -208,18 +208,14 @@
         }
     }
 
-    // ★新しく追加：メニューを検索（フィルタリング）する機能
+    /* --- [2] メニューを検索（フィルタリング）する機能 --- */
     function filterMenu() {
-        // 入力された文字を取得して小文字にする
         const input = document.getElementById('wiki-search');
         const filter = input.value.toLowerCase();
-        
-        // サイドバー内のすべてのリンク項目を取得
         const navItems = document.querySelectorAll('.nav-item, .sub-item');
 
         navItems.forEach(item => {
             const text = item.textContent || item.innerText;
-            // 入力文字が含まれているか判定
             if (text.toLowerCase().indexOf(filter) > -1) {
                 item.style.display = ""; // 一致したら表示
             } else {
@@ -227,7 +223,6 @@
             }
         });
 
-        // 検索中にカテゴリー(規約、Wikiなど)が閉じていると見えないので、自動で展開する
         const details = document.querySelectorAll('.wiki-menu details');
         if (filter.length > 0) {
             details.forEach(detail => {
@@ -235,9 +230,48 @@
             });
         }
     }
+
+    /* --- [3] ダークモード切り替え機能 --- */
+    function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById('theme-icon');
+        
+        // 現在がダークモードかどうか判定
+        if (html.getAttribute('data-theme') === 'dark') {
+            // ライトモードへ
+            html.removeAttribute('data-theme');
+            icon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'light'); // 設定を保存
+        } else {
+            // ダークモードへ
+            html.setAttribute('data-theme', 'dark');
+            icon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark'); // 設定を保存
+        }
+    }
+
+    /* --- [4] ページ読み込み時に保存されたテーマを適用する --- */
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme');
+        const icon = document.getElementById('theme-icon');
+        
+        if (savedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (icon) icon.classList.replace('fa-moon', 'fa-sun');
+        }
+    });
+
+    /* --- [5] ショートカットキー設定 (Ctrl + K で検索) --- */
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            document.getElementById('wiki-search').focus();
+        }
+    });
 </script>
 </body>
 </html>
+
 
 
 
