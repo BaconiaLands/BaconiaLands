@@ -28,9 +28,9 @@
 
 <header>
     <nav class="navbar content-limit">
-        <div class="nav-left-group" style="display: flex; align-items: center; gap: 30px;">
+        <div class="nav-left-group" style="display: flex; align-items: center; gap: 25px;">
             <div class="logo">Baconia<span>Lands</span></div>
-            <ul class="nav-links" style="display: flex; gap: 20px; list-style: none; margin: 0; padding: 0;">
+            <ul class="nav-links" style="display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; align-items: center;">
                 <li><a href="#about">サーバーについて</a></li>
                 <li><a href="#news">お知らせ</a></li> 
                 <li><a href="wiki.html">Wiki</a></li>
@@ -38,20 +38,21 @@
                 <li><a href="#servers">サーバー一覧</a></li>
                 <li><a href="#staff">運営チーム</a></li>
                 <li><a href="#policies">規約・方針</a></li>
+                <li>
+                    <a href="https://discord.gg/Ncskwq7J6Q" class="discord-btn" target="_blank" style="padding: 6px 12px; border-radius: 6px; font-size: 0.85rem;">
+                        <i class="fab fa-discord"></i> Discordに参加
+                    </a>
+                </li>
             </ul>
         </div>
 
-        <div class="header-controls" style="display: flex; align-items: center; gap: 15px;">
-            <button id="theme-toggle" class="header-theme-btn" onclick="toggleTheme()" style="background: none; border: none; cursor: pointer; font-size: 1.2rem;">
+        <div class="header-controls">
+            <button id="theme-toggle" class="header-theme-btn" onclick="toggleTheme()" style="background: none; border: none; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center;">
                 <i class="fas fa-moon" id="theme-icon"></i>
             </button>
-            <a href="https://discord.gg/Ncskwq7J6Q" class="discord-btn" target="_blank">
-                <i class="fab fa-discord"></i> Discordに参加
-            </a>
         </div>
     </nav>
 </header>
-
 
 <main>
 
@@ -679,6 +680,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 </html>
+
 
 
 
