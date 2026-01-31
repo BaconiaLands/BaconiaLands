@@ -130,6 +130,54 @@
 
         h1 { font-size: 2rem; margin-top: 0; color: #333; }
         p { line-height: 1.8; color: #555; }
+
+/* --- 追加：サイドバー開閉・検索バーのデザイン --- */
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px 20px 5px;
+        }
+        .sidebar-logo { width: 32px; height: 32px; border-radius: 8px; }
+
+        .toggle-btn {
+            background: white; border: 1px solid #e0e0e0; color: #666;
+            cursor: pointer; font-size: 1.1rem; padding: 8px;
+            border-radius: 8px; transition: 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .toggle-btn:hover { background: #f5f5f5; color: #000; }
+
+        .search-container { margin-bottom: 20px; }
+        .search-box {
+            display: flex; align-items: center;
+            background: #f0f0f0; border-radius: 10px;
+            padding: 8px 12px; border: 1px solid #e0e0e0;
+        }
+        .search-box input {
+            background: none; border: none; margin-left: 10px;
+            width: 100%; outline: none; font-size: 0.9rem;
+        }
+        .search-badge { display: flex; gap: 4px; }
+        .search-badge span {
+            background: #fff; border: 1px solid #ddd;
+            border-radius: 4px; padding: 2px 5px;
+            font-size: 0.7rem; color: #888;
+        }
+
+        /* --- 開閉アニメーション --- */
+        .sidebar { transition: transform 0.3s ease; }
+        .sidebar.closed { transform: translateX(-280px); }
+        .main-scroll-area { transition: margin-left 0.3s ease; }
+        .main-scroll-area.expanded { margin-left: 0; }
+
+        /* サイドバーが閉まっている時だけ画面左上に出るボタン */
+        #open-btn {
+            position: fixed; left: 20px; top: 20px;
+            z-index: 200; display: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
     </style>
 </head>
 <body>
@@ -195,6 +243,7 @@
 
 </body>
 </html>
+
 
 
 
