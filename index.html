@@ -679,7 +679,59 @@ window.addEventListener('DOMContentLoaded', () => {
         if (icon) icon.classList.replace('fa-moon', 'fa-sun');
     }
 });
-    
+    // --- サイト内検索のデータと機能 ---
+const searchDatabase = [
+    { title: "サーバーについて", url: "#about", category: "HOME", text: "2026年1月16日に誕生したクロスプレイ対応サーバー。" },
+    { title: "お知らせ", url: "#news", category: "HOME", text: "最新アップデート情報や公式サイト公開のニュース。" },
+    { title: "利用規約", url: "#policies", category: "RULES", text: "サーバー利用のルール、禁止事項、プライバシーポリシー。" },
+    { title: "始め方ガイド", url: "wiki.html#intro", category: "WIKI", text: "マイクラサーバーへの参加方法や初心者向けガイド。" },
+    { title: "運営チーム", url: "#staff", category: "STAFF", text: "オーナーのkinomina、管理者のMvv_jpなどのスタッフ紹介。" },
+    { title: "サーバーの魅力", url: "#features", category: "HOME", text: "低遅延な環境、優しいコミュニティ、独自システム。" }
+];
+
+function filterSite() {
+    const input = document.getElementById('site-search');
+    const filter = input.value.toLowerCase();
+    const panel = document.getElementById('search-results-panel');
+
+    if (filter.length === 0) {
+        panel.style.display = "none";
+        return;
+    }
+
+    panel.innerHTML = "";
+    let hasResults = false;
+
+    // 太字ハイライト関数
+    const highlight = (text, query) => {
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        return text.replace(regex, '<b>$1</b>');
+    };
+
+    searchDatabase.forEach(data => {
+        if (data.title.toLowerCase().includes(filter) || data.text.toLowerCase().includes(filter)) {
+            hasResults = true;
+            const item = document.createElement('a');
+            item.href = data.url;
+            item.className = 'search-result-item';
+            item.innerHTML = `
+                <span class="result-category">${data.category}</span>
+                <div style="font-weight: bold; font-size: 0.9rem; margin-bottom: 2px;">${highlight(data.title, filter)}</div>
+                <div style="font-size: 0.75rem; color: #888; line-height: 1.4;">${highlight(data.text, filter)}</div>
+            `;
+            panel.appendChild(item);
+        }
+    });
+
+    panel.style.display = hasResults ? "block" : "none";
+}
+
+// 検索ボックス以外をクリックしたら結果パネルを閉じる
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) {
+        document.getElementById('search-results-panel').style.display = "none";
+    }
+});
 </script>
 
 </body>
@@ -687,6 +739,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 </html>
+
 
 
 
