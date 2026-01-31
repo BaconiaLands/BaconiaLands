@@ -511,3 +511,31 @@ body {
     display: flex;
     align-items: center;
 }
+
+/* Discordボタンの元のデザインとアニメーション */
+.discord-btn {
+    background-color: #5865f2; /* Discordブルー */
+    color: #ffffff !important;   /* 文字色を白に固定 */
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease; /* アニメーションの速度 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ホバーアニメーションを元に戻す */
+.discord-btn:hover {
+    background-color: #4752c4;   /* 少し濃い青に */
+    color: #ffffff !important;   /* ホバー時も白を維持 */
+    transform: translateY(-3px); /* 上に少し浮き上がる */
+    box-shadow: 0 6px 12px rgba(88, 101, 242, 0.3); /* 青い影を強調 */
+}
+
+/* クリックした瞬間の動き */
+.discord-btn:active {
+    transform: translateY(-1px);
+}
