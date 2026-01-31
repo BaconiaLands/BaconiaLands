@@ -233,7 +233,7 @@
    // index.htmlの内容データ
     const indexData = [
         { title: "サーバーについて", section: "about", text: "2026年1月16日に誕生したクロスプレイ対応サーバー。24時間稼働でいつでも入れます。" },
-        { title: "お知らせ", section: "news", text: "最新ニュースやアップデート情報。公式サイト公開のお知らせなど。" },
+        { title: "お知らせ", section: "news", text: "最新ニュースやアップデート情報. 公式サイト公開のお知らせなど。" },
         { title: "サーバーの魅力", section: "features", text: "低遅延な環境、優しいコミュニティ、独自のプラグインシステムが自慢です。" },
         { title: "サーバー一覧", section: "servers", text: "Hubサーバー、ミニゲームサーバー、ライフサーバーの3種類があります。" },
         { title: "運営チーム", section: "staff", text: "オーナーのkinomina、べーこん、管理者のMvv_jpなどのスタッフ紹介。" },
@@ -243,17 +243,32 @@
     function filterMenu() {
         const input = document.getElementById('wiki-search');
         const filter = input.value.toLowerCase();
-        // Wiki内のメニュー項目を取得（index.htmlの結果は除外する）
         const navItems = document.querySelectorAll('.nav-item, .sub-item:not(.external-result)');
         const searchResultsContainer = document.getElementById('external-search-results');
 
-        // 1. Wiki内の項目を検索
+        // 一致した文字を <b> で囲む関数
+        const highlightText = (fullText, query) => {
+            if (!query) return fullText;
+            const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            return fullText.replace(regex, '<b>$1</b>');
+        };
+
+        // 1. Wiki内のメニュー検索
         navItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(filter) ? "" : "none";
+            if (!item.hasAttribute('data-original-text')) {
+                item.setAttribute('data-original-text', item.innerText);
+            }
+            const originalText = item.getAttribute('data-original-text');
+
+            if (originalText.toLowerCase().includes(filter)) {
+                item.style.display = "";
+                item.innerHTML = highlightText(originalText, filter);
+            } else {
+                item.style.display = "none";
+            }
         });
 
-        // 2. index.htmlの内容を検索
+        // 2. index.htmlの内容検索
         searchResultsContainer.innerHTML = "";
         if (filter.length > 0) {
             indexData.forEach(data => {
@@ -262,14 +277,16 @@
                     resultLink.href = `index.html#${data.section}`;
                     resultLink.className = 'sub-item external-result';
                     
-                    // セクション名を黄色い文字で上に表示
+                    const hTitle = highlightText(data.title, filter);
+                    const hText = highlightText(data.text, filter);
+
                     resultLink.innerHTML = `
                         <div style="font-size: 0.75rem; color: #ffcc00; font-weight: bold; margin-bottom: 2px;">
                             <i class="fas fa-home"></i> index.html > ${data.title}
                         </div>
-                        <div style="color: var(--text-color); font-weight: bold; font-size: 0.9rem;">${data.title}</div>
+                        <div style="color: var(--text-color); font-weight: bold; font-size: 0.9rem;">${hTitle}</div>
                         <div style="font-size: 0.8rem; color: #888; margin-top: 4px; line-height: 1.4;">
-                            ${data.text}
+                            ${hText}
                         </div>
                     `;
                     searchResultsContainer.appendChild(resultLink);
@@ -277,7 +294,7 @@
             });
         }
 
-        // アコーディオンの自動開閉
+        // アコーディオン自動開閉
         const details = document.querySelectorAll('.wiki-menu details');
         details.forEach(detail => {
             const hasVisibleItem = detail.querySelector('.sub-item:not([style*="display: none"])');
@@ -325,6 +342,7 @@
 </script>
 </body>
 </html>
+
 
 
 
