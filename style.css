@@ -573,3 +573,36 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     background: #3d3d3d !important;
 }
+
+/* 検索結果パネル内のアイテムデザイン */
+.search-result-item {
+    display: block !important;
+    padding: 10px !important;
+    border-radius: 8px;
+    text-decoration: none !important;
+    color: var(--text-color) !important;
+    transition: 0.2s;
+    margin-bottom: 5px;
+    border-left: 3px solid transparent;
+}
+
+.search-result-item:hover {
+    background: var(--nav-hover);
+    border-left: 3px solid #ffcc00; /* 黄色のアクセント線 */
+}
+
+/* 検索ワードと一致した太字部分の色 */
+.search-result-item b {
+    color: #ffcc00;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.result-category {
+    font-size: 0.65rem;
+    color: #ffcc00;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
