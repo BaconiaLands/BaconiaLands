@@ -134,37 +134,52 @@
 </head>
 <body>
 
-    <aside class="sidebar">
-        <nav>
-            <a href="index.html#about" class="nav-item">サーバーについて</a>
-            <a href="index.html#news" class="nav-item">お知らせ</a>
-            <a href="wiki.html" class="nav-item active">Wiki</a>
-            <a href="index.html#features" class="nav-item">サーバーの魅力</a>
-            <a href="index.html#servers" class="nav-item">サーバー一覧</a>
-            <a href="index.html#staff" class="nav-item">運営チーム</a>
-            <a href="https://discord.gg/Ncskwq7J6Q" class="nav-item" target="_blank" rel="noopener noreferrer">Discord</a>
-        </nav>
+    <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <img src="logo.png" alt="Logo" class="sidebar-logo"> 
+        <button class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-columns"></i></button>
+    </div>
 
-        <div class="wiki-menu">
-            <div class="section-label">Menu</div>
-            
-            <details>
-                <summary>規約</summary>
-                <ul class="sub-menu">
-    <li><a href="index.html#policies" class="sub-item">利用規約</a></li>
-    <li><a href="index.html#policies" class="sub-item">プライバシーポリシー</a></li>
-</ul>
-            </details>
-
-            <details open>
-                <summary>Wiki</summary>
-                <div class="section-label" style="padding-left: 0; margin-top: 5px;">基本ガイド</div>
-                <ul class="sub-menu">
-                    <li><a href="#intro" class="sub-item active"><i class="fas fa-play"></i> 始め方</a></li>
-                </ul>
-            </details>
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search" disabled>
+            <div class="search-badge"><span>Ctrl</span><span>K</span></div>
         </div>
-    </aside>
+    </div>
+
+    <nav>
+        <a href="index.html#about" class="nav-item">サーバーについて</a>
+        <a href="index.html#news" class="nav-item">お知らせ</a>
+        <a href="wiki.html" class="nav-item active">Wiki</a>
+        <a href="index.html#features" class="nav-item">サーバーの魅力</a>
+        <a href="index.html#servers" class="nav-item">サーバー一覧</a>
+        <a href="index.html#staff" class="nav-item">運営チーム</a>
+        <a href="https://discord.gg/Ncskwq7J6Q" class="nav-item" target="_blank">Discord</a>
+    </nav>
+
+    <div class="wiki-menu">
+        <div class="section-label">Menu</div>
+        <details>
+            <summary>規約</summary>
+            <ul class="sub-menu">
+                <li><a href="index.html#policies" class="sub-item">利用規約</a></li>
+                <li><a href="index.html#policies" class="sub-item">プライバシーポリシー</a></li>
+            </ul>
+        </details>
+        <details open>
+            <summary>Wiki</summary>
+            <div class="section-label" style="padding-left: 0; margin-top: 5px;">基本ガイド</div>
+            <ul class="sub-menu">
+                <li><a href="#intro" class="sub-item active"><i class="fas fa-play"></i> 始め方</a></li>
+            </ul>
+        </details>
+    </div>
+</aside>
+
+<button id="open-btn" class="toggle-btn" onclick="toggleSidebar()">
+    <i class="fas fa-columns"></i>
+</button>
 
     <main class="main-scroll-area">
         <article class="article-box" id="intro">
@@ -180,5 +195,6 @@
 
 </body>
 </html>
+
 
 
