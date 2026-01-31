@@ -2,95 +2,179 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Wiki - Minimal Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BaconiaLands | Wiki</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- [1] 全体の背景（薄灰色） --- */
+        /* --- [1] 全体の背景 --- */
         body, html { 
             margin: 0; padding: 0; height: 100%; 
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
-            background-color: #e0e4e7; /* 落ち着いた薄灰色 */
-            color: #333;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f5f5f5; /* 明るいグレー */
+            color: #444;
             overflow: hidden;
         }
 
-        /* --- [2] サイドバー（半透明の白） --- */
+        /* --- [2] サイドバー --- */
         .sidebar {
-            width: 260px; height: 100vh; 
-            background: rgba(255, 255, 255, 0.6); /* 半透明の白 */
-            backdrop-filter: blur(10px); /* 後ろをぼかす */
-            border-right: 1px solid rgba(0, 0, 0, 0.1);
-            position: fixed; padding: 40px 20px; box-sizing: border-box; z-index: 100;
+            width: 280px; height: 100vh; 
+            background: #ffffff;
+            border-right: 1px solid #e0e0e0;
+            position: fixed; padding: 30px 15px; box-sizing: border-box; z-index: 100;
+            overflow-y: auto;
         }
 
-        /* サイドバー内のボタン群（index.htmlから移植） */
-        .nav-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
-        .nav-link {
-            text-decoration: none; color: #333; font-weight: bold; 
-            padding: 12px; border: 2px solid #333; border-radius: 8px; 
-            text-align: center; transition: 0.3s; background: rgba(255,255,255,0.5);
+        /* メインメニュー項目 */
+        .nav-item {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            padding: 10px 15px;
+            margin-bottom: 5px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: 0.2s;
         }
-        .nav-link:hover { background: #333; color: #fff; }
-
-        /* --- [3] Wikiメニュー（三角矢印付き） --- */
-        .wiki-menu { border-top: 1px solid rgba(0,0,0,0.1); padding-top: 20px; }
-        .wiki-details { list-style: none; margin-bottom: 10px; }
-        .wiki-summary { 
-            font-weight: bold; cursor: pointer; list-style: none; 
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px; background: rgba(0,0,0,0.05); border-radius: 5px;
+        .nav-item:hover {
+            background-color: #eee;
+            color: #333;
         }
-        /* 標準の矢印を消して、独自の三角矢印を表示 */
-        .wiki-summary::-webkit-details-marker { display: none; }
-        .wiki-summary::after {
-            content: '▲'; /* 展開時の向き */
-            font-size: 0.7rem;
-            transition: transform 0.3s;
-        }
-        /* 閉じている時の矢印の向き */
-        details:not([open]) .wiki-summary::after {
-            transform: rotate(180deg); /* 逆向き（下向き）に */
+        /* 現在選択されている項目のスタイル */
+        .nav-item.active {
+            background-color: #e0e0e0;
+            color: #000;
         }
 
-        .wiki-list { list-style: none; padding: 10px 0 0 15px; margin: 0; }
-        .wiki-list li { margin-bottom: 10px; }
-        .wiki-list a { text-decoration: none; color: #555; font-size: 0.9rem; }
-        .wiki-list a:hover { color: #000; text-decoration: underline; }
+        /* --- [3] Wikiのアコーディオンメニュー --- */
+        .wiki-menu {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
 
-        /* --- [4] メインコンテンツ（半透明ボックス） --- */
+        details {
+            margin-bottom: 10px;
+        }
+
+        summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            color: #666;
+            font-weight: 500;
+            cursor: pointer;
+            list-style: none;
+            border-radius: 10px;
+        }
+        summary:hover { background: #f9f9f9; }
+        summary::-webkit-details-marker { display: none; }
+
+        /* 右側の矢印アイコン */
+        summary::after {
+            content: '\f107'; /* FontAwesomeの矢印（下） */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        /* 子リストのスタイル */
+        .sub-menu {
+            list-style: none;
+            padding: 5px 0 5px 15px;
+            margin: 0;
+            border-left: 1px solid #e0e0e0;
+            margin-left: 20px;
+        }
+        
+        .sub-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            padding: 8px 15px;
+            margin: 2px 0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .sub-item i {
+            margin-right: 10px;
+            font-size: 0.8rem;
+            width: 16px;
+            text-align: center;
+        }
+        .sub-item:hover {
+            background-color: #eee;
+            color: #000;
+        }
+        /* 子項目の選択中スタイル */
+        .sub-item.active {
+            background-color: #e0e0e0;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* セクションラベル */
+        .section-label {
+            padding-left: 15px;
+            font-size: 0.8rem;
+            color: #999;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        /* --- [4] メインコンテンツ --- */
         .main-scroll-area { 
-            margin-left: 260px; height: 100vh; overflow-y: auto; 
-            padding: 80px 50px; box-sizing: border-box; 
+            margin-left: 280px; height: 100vh; overflow-y: auto; 
+            padding: 60px 50px; box-sizing: border-box; 
         }
 
         .article-box {
-            max-width: 800px; margin: 0 auto; padding: 50px; 
+            max-width: 800px; margin: 0 auto; padding: 40px; 
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.7); /* 半透明の白 */
-            backdrop-filter: blur(5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
-        h1 { border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 15px; margin-top: 0; }
-        p { line-height: 1.8; font-size: 1.05rem; }
+        h1 { font-size: 2rem; margin-top: 0; color: #333; }
+        p { line-height: 1.8; color: #555; }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
-        <div class="nav-group">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="#" class="nav-link">News</a>
-            <a href="#" class="nav-link">About</a>
-            <a href="wiki.html" class="nav-link">Wiki</a>
-        </div>
+        <nav>
+            <a href="index.html" class="nav-item">ホーム</a>
+            <a href="#" class="nav-item">お知らせ</a>
+            <a href="#" class="nav-item">ルール</a>
+            <a href="wiki.html" class="nav-item active">Wiki</a>
+            <a href="#" class="nav-item">マップ</a>
+            <a href="#" class="nav-item">Discord</a>
+        </nav>
 
         <div class="wiki-menu">
+            <div class="section-label">コンテンツ</div>
+            
+            <details>
+                <summary>ルール</summary>
+                <ul class="sub-menu">
+                    <li><a href="#" class="sub-item">基本ルール</a></li>
+                    <li><a href="#" class="sub-item">禁止事項</a></li>
+                </ul>
+            </details>
+
             <details open>
-                <summary class="wiki-summary">Wiki 一覧</summary>
-                <ul class="wiki-list">
-                    <li><a href="#intro">1. 入り方</a></li>
-                    <li><a href="#">2. 基本ルール</a></li>
-                    <li><a href="#">3. よくある質問</a></li>
+                <summary>Wiki</summary>
+                <div class="section-label" style="padding-left: 0; margin-top: 5px;">基本ガイド</div>
+                <ul class="sub-menu">
+                    <li><a href="#intro" class="sub-item active"><i class="fas fa-play"></i> 始め方</a></li>
+                    <li><a href="#" class="sub-item"><i class="far fa-heart"></i> 寄付について</a></li>
+                    <li><a href="#" class="sub-item"><i class="fas fa-book"></i> コマンド一覧</a></li>
                 </ul>
             </details>
         </div>
@@ -98,13 +182,12 @@
 
     <main class="main-scroll-area">
         <article class="article-box" id="intro">
-            <h1>入り方</h1>
+            <h1>始め方</h1>
             <p>
-                背景を薄灰色にし、サイドバーとこの文章ボックスを「半透明の白」で統一しました。<br>
-                シンプルでモダンなデザインになっています。
+                サーバーへの参加方法について解説します。Java版、統合版どちらからでも参加可能です。
             </p>
             <p>
-                左側の「Wiki 一覧」メニューには、開閉状態がわかりやすいように三角の矢印（▲/▼）を追加しています。
+                左側のサイドバーのデザインを、スクリーンショットのイメージに合わせて刷新しました。角丸のグレー背景（アクティブ状態）や、アイコン、階層構造を整理しています。
             </p>
         </article>
     </main>
