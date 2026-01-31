@@ -28,8 +28,12 @@
 
 <header>
     <nav class="navbar content-limit" style="display: flex; justify-content: space-between; align-items: center;">
-        <div class="nav-left-group" style="display: flex; align-items: center; gap: 15px;"> <div class="logo">Baconia<span>Lands</span></div>
-            <ul class="nav-links" style="display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; align-items: center;"> <li><a href="#about">サーバーについて</a></li>
+        <div class="nav-left-group" style="display: flex; align-items: center; gap: 15px;"> 
+            <div class="logo">Baconia<span>Lands</span></div>
+            <ul class="nav-links" style="display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; align-items: center;"> 
+                <li><a href="#">ホーム</a></li>
+                
+                <li><a href="#about">サーバーについて</a></li>
                 <li><a href="#news">お知らせ</a></li> 
                 <li><a href="wiki.html">Wiki</a></li>
                 <li><a href="#features">サーバーの魅力</a></li> 
@@ -46,7 +50,8 @@
 
         <div class="header-controls" style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
             <div class="search-container" style="position: relative;">
-                <div class="search-box" style="display: flex; align-items: center; background: var(--search-bg); border-radius: 8px; padding: 5px 10px; border: 1px solid var(--border-color); width: 150px;"> <i class="fas fa-search" style="font-size: 0.8rem; color: #888;"></i>
+                <div class="search-box" style="display: flex; align-items: center; background: var(--search-bg); border-radius: 8px; padding: 5px 10px; border: 1px solid var(--border-color); width: 150px;"> 
+                    <i class="fas fa-search" style="font-size: 0.8rem; color: #888;"></i>
                     <input type="text" id="site-search" placeholder="検索..." onkeyup="filterSite()" style="background: none; border: none; margin-left: 5px; width: 100%; outline: none; font-size: 0.8rem; color: var(--text-color);">
                 </div>
                 <div id="search-results-panel" style="position: absolute; top: 45px; right: 0; width: 280px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1000; display: none; border: 1px solid var(--border-color);"></div>
@@ -736,6 +741,7 @@ document.addEventListener('click', (e) => {
 
 
 </html>
+
 
 
 
