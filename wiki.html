@@ -177,6 +177,16 @@
             z-index: 200; display: none;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+/* 検索中に入力している文字の色をはっきりさせる */
+.search-box input {
+    color: #333 !important;
+}
+
+/* 検索で見つからなかった項目をパッと消すための設定 */
+.nav-item[style*="display: none"], .sub-item[style*="display: none"] {
+    display: none !important;
+}
         
     </style>
 </head>
@@ -261,6 +271,7 @@
     </script>
 </body>
 </html>
+
 
 
 
