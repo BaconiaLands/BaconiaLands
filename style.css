@@ -459,3 +459,28 @@ header {
 .header-theme-btn i {
     color: var(--header-text);
 }
+
+/* ナビバーの中身を調整 */
+.navbar.content-limit {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 20px; /* 上下を 15px → 8px に減らして短くします */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ロゴのサイズが大きすぎてヘッダーを押し広げている場合は、ここも調整 */
+.logo {
+    font-size: 1.2rem; /* 少し小さくするとさらに短くなります */
+}
+
+/* メインコンテンツ全体をヘッダーの分だけ下に下げる */
+body {
+    padding-top: 60px; /* ヘッダーの高さに合わせて調整（例: 60px 〜 70px） */
+}
+
+/* または、最初のセクション（hero）に余白を作る */
+.hero {
+    padding-top: 80px; 
+}
