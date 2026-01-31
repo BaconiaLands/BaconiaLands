@@ -10,7 +10,7 @@
         body, html { 
             margin: 0; padding: 0; height: 100%; 
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f5f5f5; /* 明るいグレー */
+            background-color: #f5f5f5;
             color: #444;
             overflow: hidden;
         }
@@ -24,7 +24,7 @@
             overflow-y: auto;
         }
 
-        /* メインメニュー項目 */
+        /* メインメニュー項目（index.htmlから移植・整理） */
         .nav-item {
             display: block;
             text-decoration: none;
@@ -34,12 +34,12 @@
             border-radius: 12px;
             font-weight: 500;
             transition: 0.2s;
+            font-size: 0.9rem;
         }
         .nav-item:hover {
             background-color: #eee;
             color: #333;
         }
-        /* 現在選択されている項目のスタイル */
         .nav-item.active {
             background-color: #e0e0e0;
             color: #000;
@@ -52,9 +52,7 @@
             padding-top: 20px;
         }
 
-        details {
-            margin-bottom: 10px;
-        }
+        details { margin-bottom: 10px; }
 
         summary {
             display: flex;
@@ -70,19 +68,16 @@
         summary:hover { background: #f9f9f9; }
         summary::-webkit-details-marker { display: none; }
 
-        /* 右側の矢印アイコン */
         summary::after {
-            content: '\f107'; /* FontAwesomeの矢印（下） */
+            content: '\f107'; 
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
             font-size: 0.9rem;
             transition: 0.3s;
         }
-        details[open] summary::after {
-            transform: rotate(180deg);
-        }
+        details[open] summary::after { transform: rotate(180deg); }
 
-        /* 子リストのスタイル */
+        /* 子リスト */
         .sub-menu {
             list-style: none;
             padding: 5px 0 5px 15px;
@@ -108,24 +103,16 @@
             width: 16px;
             text-align: center;
         }
-        .sub-item:hover {
-            background-color: #eee;
-            color: #000;
-        }
-        /* 子項目の選択中スタイル */
-        .sub-item.active {
-            background-color: #e0e0e0;
-            color: #000;
-            font-weight: bold;
-        }
+        .sub-item:hover { background-color: #eee; color: #000; }
+        .sub-item.active { background-color: #e0e0e0; color: #000; font-weight: bold; }
 
-        /* セクションラベル */
         .section-label {
             padding-left: 15px;
-            font-size: 0.8rem;
-            color: #999;
+            font-size: 0.75rem;
+            color: #aaa;
             margin: 15px 0 5px;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         /* --- [4] メインコンテンツ --- */
@@ -149,22 +136,23 @@
 
     <aside class="sidebar">
         <nav>
-            <a href="index.html" class="nav-item">ホーム</a>
-            <a href="#" class="nav-item">お知らせ</a>
-            <a href="#" class="nav-item">ルール</a>
+            <a href="index.html#about" class="nav-item">サーバーについて</a>
+            <a href="index.html#news" class="nav-item">お知らせ</a>
             <a href="wiki.html" class="nav-item active">Wiki</a>
-            <a href="#" class="nav-item">マップ</a>
-            <a href="#" class="nav-item">Discord</a>
+            <a href="index.html#features" class="nav-item">サーバーの魅力</a>
+            <a href="index.html#servers" class="nav-item">サーバー一覧</a>
+            <a href="index.html#staff" class="nav-item">運営チーム</a>
+            <a href="index.html#discord" class="nav-item">Discord</a>
         </nav>
 
         <div class="wiki-menu">
-            <div class="section-label">コンテンツ</div>
+            <div class="section-label">Menu</div>
             
             <details>
-                <summary>ルール</summary>
+                <summary>規約</summary>
                 <ul class="sub-menu">
-                    <li><a href="#" class="sub-item">基本ルール</a></li>
-                    <li><a href="#" class="sub-item">禁止事項</a></li>
+                    <li><a href="#" class="sub-item">利用規約</a></li>
+                    <li><a href="#" class="sub-item">プライバシーポリシー</a></li>
                 </ul>
             </details>
 
@@ -173,8 +161,6 @@
                 <div class="section-label" style="padding-left: 0; margin-top: 5px;">基本ガイド</div>
                 <ul class="sub-menu">
                     <li><a href="#intro" class="sub-item active"><i class="fas fa-play"></i> 始め方</a></li>
-                    <li><a href="#" class="sub-item"><i class="far fa-heart"></i> 寄付について</a></li>
-                    <li><a href="#" class="sub-item"><i class="fas fa-book"></i> コマンド一覧</a></li>
                 </ul>
             </details>
         </div>
@@ -184,10 +170,10 @@
         <article class="article-box" id="intro">
             <h1>始め方</h1>
             <p>
-                サーバーへの参加方法について解説します。Java版、統合版どちらからでも参加可能です。
+                サーバーへの参加方法について解説します。
             </p>
             <p>
-                左側のサイドバーのデザインを、スクリーンショットのイメージに合わせて刷新しました。角丸のグレー背景（アクティブ状態）や、アイコン、階層構造を整理しています。
+                サイドバーのメニューを整理しました。「利用規約」や「プライバシーポリシー」の追加、および「寄付」「コマンド」の削除が完了しています。
             </p>
         </article>
     </main>
