@@ -224,27 +224,59 @@
         }
     }
 
-    /* --- [2] メニューを検索（フィルタリング）する機能 --- */
+   // index.htmlの内容データ
+    const indexData = [
+        { title: "サーバーについて", section: "about", text: "2026年1月16日に誕生したクロスプレイ対応サーバー。24時間稼働でいつでも入れます。" },
+        { title: "お知らせ", section: "news", text: "最新ニュースやアップデート情報。公式サイト公開のお知らせなど。" },
+        { title: "サーバーの魅力", section: "features", text: "低遅延な環境、優しいコミュニティ、独自のプラグインシステムが自慢です。" },
+        { title: "サーバー一覧", section: "servers", text: "Hubサーバー、ミニゲームサーバー、ライフサーバーの3種類があります。" },
+        { title: "運営チーム", section: "staff", text: "オーナーのkinomina、べーこん、管理者のMvv_jpなどのスタッフ紹介。" },
+        { title: "規約・方針", section: "policies", text: "利用規約、プライバシーポリシー、禁止事項などのルール全文。" }
+    ];
+
     function filterMenu() {
         const input = document.getElementById('wiki-search');
         const filter = input.value.toLowerCase();
-        const navItems = document.querySelectorAll('.nav-item, .sub-item');
+        // Wiki内のメニュー項目を取得（index.htmlの結果は除外する）
+        const navItems = document.querySelectorAll('.nav-item, .sub-item:not(.external-result)');
+        const searchResultsContainer = document.getElementById('external-search-results');
 
+        // 1. Wiki内の項目を検索
         navItems.forEach(item => {
-            const text = item.textContent || item.innerText;
-            if (text.toLowerCase().indexOf(filter) > -1) {
-                item.style.display = ""; // 一致したら表示
-            } else {
-                item.style.display = "none"; // 一致しなかったら隠す
-            }
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(filter) ? "" : "none";
         });
 
-        const details = document.querySelectorAll('.wiki-menu details');
+        // 2. index.htmlの内容を検索
+        searchResultsContainer.innerHTML = "";
         if (filter.length > 0) {
-            details.forEach(detail => {
-                detail.open = true;
+            indexData.forEach(data => {
+                if (data.title.toLowerCase().includes(filter) || data.text.toLowerCase().includes(filter)) {
+                    const resultLink = document.createElement('a');
+                    resultLink.href = `index.html#${data.section}`;
+                    resultLink.className = 'sub-item external-result';
+                    
+                    // セクション名を黄色い文字で上に表示
+                    resultLink.innerHTML = `
+                        <div style="font-size: 0.75rem; color: #ffcc00; font-weight: bold; margin-bottom: 2px;">
+                            <i class="fas fa-home"></i> index.html > ${data.title}
+                        </div>
+                        <div style="color: var(--text-color); font-weight: bold; font-size: 0.9rem;">${data.title}</div>
+                        <div style="font-size: 0.8rem; color: #888; margin-top: 4px; line-height: 1.4;">
+                            ${data.text}
+                        </div>
+                    `;
+                    searchResultsContainer.appendChild(resultLink);
+                }
             });
         }
+
+        // アコーディオンの自動開閉
+        const details = document.querySelectorAll('.wiki-menu details');
+        details.forEach(detail => {
+            const hasVisibleItem = detail.querySelector('.sub-item:not([style*="display: none"])');
+            detail.open = (filter.length > 0 && hasVisibleItem);
+        });
     }
 
     /* --- [3] ダークモード切り替え機能 --- */
@@ -287,6 +319,7 @@
 </script>
 </body>
 </html>
+
 
 
 
