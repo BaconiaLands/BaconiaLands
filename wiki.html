@@ -454,31 +454,34 @@
             document.getElementById('wiki-search').focus();
         }
     });
+
+       /* --- Wiki記事の表示切り替え機能 --- */
+    document.querySelectorAll('.sub-item').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                
+                // 全ての記事を非表示にする
+                document.querySelectorAll('.article-box').forEach(article => {
+                    article.style.display = 'none';
+                });
+                
+                // クリックされたIDの記事だけ表示する
+                const targetId = href.substring(1);
+                const targetArticle = document.getElementById(targetId);
+                if (targetArticle) {
+                    targetArticle.style.display = 'block';
+                    // スクロールを一番上に戻す
+                    document.querySelector('.main-scroll-area').scrollTop = 0;
+                }
+                
+                // 左メニューの「active」クラスを付け替える
+                document.querySelectorAll('.sub-item').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
